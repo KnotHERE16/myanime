@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
-    <nav id="navbar" className="bg-gray-900">
+    <nav id="navbar" className="bg-gray-700">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px">
         <div className="relative flex items-center justify-between h-16">
           <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
@@ -11,11 +11,13 @@ const Navbar = () => {
             </div>
             <div className="sm:block sm:ml-6">
               <div className="flex">
-                <NavItem link="profile" label="Profile" />
-                <NavItem link="anime" label="Anime" />
-                <DropdownMenu>
-                  <DropdownItem link="ecchi" label="Ecchi" />
-                  <DropdownItem link="Harem" label="Harem" />
+                <NavItem link="/profile" label="Profile" />
+                <DropdownMenu label="Read Status">
+                  <DropdownItem link="manga/reading" label="Reading" />
+                  <DropdownItem link="manga/completed" label="Completed" />
+                  <DropdownItem link="manga/stalled" label="Stalled" />
+                  <DropdownItem link="manga/waiting" label="Waiting" />
+                  <DropdownItem link="manga/dropped" label="Dropped" />
                 </DropdownMenu>
               </div>
             </div>
@@ -35,8 +37,8 @@ interface navitemProps {
 
 const NavLogo = () => {
     return (
-      <div className='h-8 w-auto text-white'>
-        <Link to="#">Logo</Link>
+      <div className='h-10 w-11 text-white'>
+        <Link to="/"><img className='rounded-full' src="../resource/logo.png" alt="Logo"/></Link>
       </div>
     );
   };
@@ -59,9 +61,9 @@ const DropdownItem = (props: navitemProps) => {
 };
 
 
-const DropdownMenu = (props : {children : React.ReactNode}) => {
+const DropdownMenu = (props : {children : React.ReactNode,label : string}) => {
   return <div className='group inline-block relative'>
-      <button className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>Manga</button>
+      <button className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>{props.label}</button>
       <div className='hidden ring-1 ring-black ring-opacity-5 absolute group-hover:block bg-white'>{props.children}</div>
       </div>;
 };

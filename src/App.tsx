@@ -1,20 +1,17 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import Layout from './components/Layout/Lyaout';
-import Navbar from './components/Layout/Navbar';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout/Layout';
+import HomePage from './pages/HomePage';
+import Profile from './pages/Profile';
 
 function App() {
   return (
     <Layout>
       <Routes>
-        <Route path="/" >
-   <div className="container">
-        <article>
-          <h1>What is Lorem Ipsum? </h1>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry...
-        </article>
-      </div>
-      </Route>
+        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/manga/:status" element={<HomePage />}></Route>
+        <Route path="/profile" element={<Profile />}></Route>
+        <Route path="*" element={<Navigate to="/" replace/>}></Route>
       </Routes>
     </Layout>
   );
